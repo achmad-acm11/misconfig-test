@@ -2,6 +2,7 @@ FROM golang:1.21.12-alpine3.20 AS builder
 RUN go env -w GO111MODULE=on
 WORKDIR /misconfig-integrator
 COPY ./    ./
+RUN CGO_ENABLED=0 GOOS=linux go mod tidy
 RUN CGO_ENABLED=0 GOOS=linux go mod vendor
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
