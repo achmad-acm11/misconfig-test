@@ -27,7 +27,7 @@ func NewTrivyCli() *TrivyCli {
 // trivy --timeout --server --ignore-unfixed --security-check vuln --skip-db-update --format json --output /_scanned-project-files/scan_repo_file_test_project_repository-.json '/_project-repository/workspace/test_project-sca'
 // /_project-repository-file/test_project/
 func (t *TrivyCli) Init() *TrivyCli {
-	t.command = "trivy --timeout " + t.trivyTimeout + " --server " + t.urlTrivyServer
+	t.command = "trivy --timeout " + t.trivyTimeout
 	return t
 }
 

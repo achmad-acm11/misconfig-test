@@ -140,7 +140,6 @@ func (p ProjectServiceImpl) addArgumentSkip(ctx *gin.Context, projectId int, pro
 func (p ProjectServiceImpl) runScanCommand(argumentData argumentInfo, pathData projectPathInfo) ([]byte, error) {
 	trivyCli := p.trivyCli.Init().AddFileSystemArgument(argumentData.skipArgument)
 	trivyCli.AddSeverityArgument(argumentData.severityArgument).
-		AddSkipDBUpdateArgument().
 		AddFormat("json").
 		AddOutput(pathData.scannedProjectFilePath).
 		AddProjectPath(pathData.projectPath)
