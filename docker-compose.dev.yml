@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  misconfig-integration:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: misconfig-integration
+    restart: always
+    ports:
+      - '8082:8082'
+    volumes:
+      - "../workspace:/root/_project-repository/workspace:rw"
+      - "../_scanned-project-files:/root/_scanned-project-files"
+      - "../cache_data_misconfig:/root/.cache/"
+    environment:
+        APP_ENV: "development"
+        DB_HOST: postgresdb
+        DB_USER: what
+        DB_PASSWORD: "what1234"
+        DB_PORT: 5432
+        DB_NAME: "misconfig"
+        APP_PORT: "8082"
+        TRIVY_SERVER_URL: "http://trivy:4954"
+        TRIVY_TIMEOUT: "5m"
+        PREFIX_PROJECT_FOLDER: "/_project-repository/workspace/"
+        PREFIX_RESULT_FOLDER: "/_scanned-project-files/"
+    networks:
+      - compose_default
+networks:
+  compose_default:
+    external: true
